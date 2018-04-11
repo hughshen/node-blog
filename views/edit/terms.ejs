@@ -1,0 +1,25 @@
+<%- include('../header') %>
+
+<h1>Terms</h1>
+<div class="row mb-sm-4">
+    <div class="col">
+        <a href="/edit/new-term" class="btn btn-primary">New Term</a>
+    </div>
+</div>
+<% if (list.length) { %>
+<div class="terms-list">
+    <% list.forEach(function(val) { %>
+    <button type="button" class="btn btn-primary">
+        <a href="<%= `/edit/update-term/${val.id}` %>">
+            <% if (val.type == 'tag') { %>
+            #<%= val.title %>
+            <% } else { %>
+            <%= val.title %>
+            <%}%>
+        </a>
+    </button>
+    <% }) %>
+</div>
+<% } %>
+
+<%- include('../footer') %>

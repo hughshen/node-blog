@@ -1,0 +1,43 @@
+@charset 'utf-8';
+
+html,
+body {
+    height: 100%;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.wrap {
+    min-height: 100%;
+    height: auto;
+    margin: 0 auto -60px;
+    padding: 0 0 60px;
+}
+
+.wrap > .container {
+    padding-top: 30px;
+}
+
+.footer {
+    height: 60px;
+    background-color: #f5f5f5;
+    border-top: 1px solid #ddd;
+    padding-top: 20px;
+}
+
+.footer p {
+    margin: 0;
+}
+
+.terms-list button {
+    margin-bottom: 1em;
+}
+
+.terms-list button a {
+    color: #fff;
+    text-decoration: none;
+}
+

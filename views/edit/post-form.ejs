@@ -1,0 +1,56 @@
+<%- include('../header') %>
+
+<% if (post.id) { %>
+<h1>Update Post</h1>
+<% } else { %>
+<h1>New Post</h1>
+<% } %>
+<div class="row">
+    <div class="col col-lg-8">
+        <%- include('../message') %>
+        <form method="post" action="/edit/update-post" class="mb-sm-4">
+            <input type="hidden" name="id" value="<%= post.id %>">
+            <div class="form-group">
+                <label for="title-input">Title</label>
+                <input type="text" name="title" class="form-control" id="title-input" placeholder="Enter title" value="<%= post.title %>" required>
+            </div>
+            <div class="form-group">
+                <label for="slug-input">Slug</label>
+                <input type="text" name="slug" class="form-control" id="slug-input" placeholder="Enter slug" value="<%= post.slug %>" required>
+            </div>
+            <div class="form-group">
+                <label for="description-input">Description</label>
+                <textarea name="description" class="form-control" id="description-input" placeholder="Enter description" required><%= post.description %></textarea>
+            </div>
+            <div class="form-group">
+                <label for="content-input">Content</label>
+                <textarea name="content" rows="6" class="form-control" id="content-input" placeholder="Enter content" required><%= post.content %></textarea>
+            </div>
+            <div class="form-group">
+                <label for="category-input" style="display: block;">Catagory</label>
+                <% if (terms.category) { %>
+                <% terms.category.forEach(function(val) { %>
+                <span style="display: inline-block;">
+                    <input type="checkbox" name="terms" value="<%= val.id %>" id="term-input-<%= val.id %>" <%= (relationship.indexOf(val.id) > -1 ? 'checked' : '') %>>
+                    <label for="term-input-<%= val.id %>"><%= val.title %></label>
+                </span>
+                <% }) %>
+                <% } %>
+            </div>
+            <div class="form-group">
+                <label for="tag-input" style="display: block;">Tag</label>
+                <% if (terms.tag) { %>
+                <% terms.tag.forEach(function(val) { %>
+                <span style="display: inline-block;">
+                    <input type="checkbox" name="terms" value="<%= val.id %>" id="term-input-<%= val.id %>" <%= (relationship.indexOf(val.id) > -1 ? 'checked' : '') %>>
+                    <label for="term-input-<%= val.id %>">#<%= val.title %></label>
+                </span>
+                <% }) %>
+                <% } %>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
+
+<%- include('../footer') %>

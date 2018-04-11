@@ -1,0 +1,28 @@
+<%- include('../header') %>
+
+<% if (typeof heading !== 'undefined' && heading) { %>
+<h1><%= heading %></h1>
+<% } %>
+
+<h1>Posts List</h1>
+<div class="row mb-sm-4">
+    <div class="col">
+        <a href="/edit/new-post" class="btn btn-primary">New Post</a>
+    </div>
+</div>
+<div class="row">
+    <% list.forEach(function(val) { %>
+    <div class="col col-lg-4">
+        <div class="card mb-sm-4">
+            <div class="card-body">
+                <h5 class="card-title"><%= val.title %></h5>
+                <p class="card-text"><%= val.description %></p>
+                <a href="<%= `/post/${val.slug}` %>" class="card-link">View</a>
+                <a href="<%= `/edit/update-post/${val.id}` %>" class="card-link">Update</a>
+            </div>
+        </div>
+    </div>
+    <% }) %>
+</div>
+
+<%- include('../footer') %>

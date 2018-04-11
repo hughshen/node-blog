@@ -1,0 +1,31 @@
+<%- include('../header') %>
+<article>
+    <div class="article-head">
+        <h1><%= post.title %></h1>
+        <p>
+            <% if (post.username) { %>
+            Posted by <%= post.username %>,
+            <% } %>
+            <time><%= post.created_at %></time>
+        </p>
+        <p class="terms-list">
+            <% if (typeof terms.category !== 'undefined') { %>
+            <% terms.category.forEach(function(val) { %>
+            <button type="button" class="btn btn-primary">
+                <a href="<%= `/category/${val.slug}` %>" class="icon-quill"><%= val.title %></a>
+            </button>
+            <% }) %>
+            <% } %>
+            <% if (typeof terms.tag !== 'undefined') { %>
+            <% terms.tag.forEach(function(val) { %>
+            <button type="button" class="btn btn-primary">
+                <a href="<%= `/tag/${val.slug}` %>" class="icon-tag">#<%= val.title %></a>
+            </button>
+            <% }) %>
+            <% } %>
+        </p>
+    </div>
+    <hr>
+    <div class="article-body"><%- post.content %></div>
+</article>
+<%- include('../footer') %>

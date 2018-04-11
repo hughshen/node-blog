@@ -1,0 +1,44 @@
+<%- include('../header') %>
+
+<% if (term.id) { %>
+<h1>Update Term</h1>
+<% } else { %>
+<h1>New Term</h1>
+<% } %>
+<div class="row">
+    <div class="col col-lg-8">
+        <%- include('../message') %>
+        <form method="post" action="/edit/update-term" class="mb-sm-4">
+            <input type="hidden" name="id" value="<%= term.id %>">
+            <div class="form-group">
+                <label for="type-input">Type</label>
+                <select name="type" class="form-control" id="type-input">
+                    <option value="category" <%= (term.type == 'category' ? 'selected' : '') %>>Category</option>
+                    <option value="tag" <%= (term.type == 'tag' ? 'selected' : '') %>>Tag</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="title-input">Title</label>
+                <input type="text" name="title" class="form-control" id="title-input" placeholder="Enter title" value="<%= term.title %>" required>
+            </div>
+            <div class="form-group">
+                <label for="slug-input">Slug</label>
+                <input type="text" name="slug" class="form-control" id="slug-input" placeholder="Enter slug" value="<%= term.slug %>" required>
+            </div>
+            <div class="form-group">
+                <label for="description-input">Description</label>
+                <textarea name="description" class="form-control" id="description-input" placeholder="Enter description"><%= term.description %></textarea>
+            </div>
+            <div class="form-group">
+                <label for="status-input">Status</label>
+                <select name="status" class="form-control" id="status-input">
+                    <option value="1" <%= (term.status == '1' ? 'selected' : '') %>>Show</option>
+                    <option value="0" <%= (term.status == '0' ? 'selected' : '') %>>Hide</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
+
+<%- include('../footer') %>

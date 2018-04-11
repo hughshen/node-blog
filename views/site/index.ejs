@@ -1,0 +1,18 @@
+<%- include('../header') %>
+
+<% if (typeof heading !== 'undefined' && heading) { %>
+<h1><%= heading %></h1>
+<% } %>
+
+<% list.forEach(function(val) { %>
+<div class="jumbotron">
+    <h2 class="display-4"><%= val.title %></h2>
+    <p class="lead"><%= val.description %></p>
+    <hr class="my-4">
+    <p class="lead">
+        <a class="btn btn-primary" href="<%= `/post/${val.slug}` %>" role="button">Read more</a>
+    </p>
+</div>
+<% }) %>
+
+<%- include('../footer') %>

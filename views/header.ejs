@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Node Blog</title>
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet">
+<link href="/css/site.css" rel="stylesheet">
+<body>
+<div class="wrap">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">Blog</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item <%= (url == '/' ? 'active' : '') %>">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item <%= (url == '/categories' ? 'active' : '') %>">
+                        <a class="nav-link" href="/categories">Categories</a>
+                    </li>
+                    <li class="nav-item <%= (url == '/tags' ? 'active' : '') %>">
+                        <a class="nav-link" href="/tags">Tags</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav mr-sm-3">
+                    <% if (user) { %>
+                    <li class="nav-item <%= (url == '/edit/posts' ? 'active' : '') %>">
+                        <a class="nav-link" href="/edit/posts">Posts</a>
+                    </li>
+                    <% if (user.role == 'admin') { %>
+                    <li class="nav-item <%= (url == '/edit/terms' ? 'active' : '') %>">
+                        <a class="nav-link" href="/edit/terms">Terms</a>
+                    </li>
+                    <% } %>
+                    <li class="nav-item">
+                        <form method="post" class="nav-link" action="/user/logout">
+                            <button type="submit" style="background: transparent; color: #fff; border: 0; cursor: pointer; padding: 0;">Logout (<%= user.username %>)</button>
+                        </form>
+                    </li>
+                    <% } else { %>
+                    <li class="nav-item <%= (url == '/user/login' ? 'active' : '') %>">
+                        <a class="nav-link" href="/user/login">Login</a>
+                    </li>
+                    <li class="nav-item <%= (url == '/user/signup' ? 'active' : '') %>">
+                        <a class="nav-link" href="/user/signup">Signup</a>
+                    </li>
+                    <% } %>
+                </ul>
+                <form class="form-inline" action="/search">
+                    <input class="form-control mr-sm-2" type="search" name="s" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+    

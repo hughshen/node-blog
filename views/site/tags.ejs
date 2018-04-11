@@ -1,0 +1,14 @@
+<%- include('../header') %>
+
+<% if (list.length) { %>
+<h1>Tags</h1>
+<div class="terms-list">
+    <% list.forEach(function(val) { %>
+    <button type="button" class="btn btn-primary">
+        <a href="<%= `/tag/${val.slug}` %>">#<%= val.title %></a>
+    </button>
+    <% }) %>
+</div>
+<% } %>
+
+<%- include('../footer') %>
